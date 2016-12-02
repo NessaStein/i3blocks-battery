@@ -35,11 +35,11 @@ else:
             return Status("#FFFFFF", "\uf241", percent, time)
         return Status("#FFFFFF", "\uf240", percent, time)
     def state_view(state):
-        if state == "Discharging": return ""
-        if state == "Charging": return "\f1e6"
-        return "1"
+        if state == "Disharging": return ""
+        else: return "\f1e6"
+    a = state_view(state)
+    print(a)
     status = status_view(percent)
-    template = '<span font="FontAwesome"><span style="margin-rigth: -10px">{}</span><span color="{}">{}</span><span font="Roboto">{}<span>[{}]</span></span></span>'
-    # output = template.format(state_view(state), status_view(percent))
+    template = '<span font="FontAwesome"><span>{}</span><span color="{}">{}</span><span font="Roboto">{}%<span>[{}]</span></span></span>'
     output = template.format(state_view(state), status.color, status.icon, str(status.percent), status.time)
 print(output)
