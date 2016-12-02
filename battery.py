@@ -17,8 +17,10 @@ else:
             self.icon = icon
             self.percent = percent
     def status_view(percent):
-        if percent <= 10:
+        if percent <= 5:
             return Status("#FF3300", "\uf244", percent)
+        if percent <= 15:
+            return Status("#FF3300", "\uf243", percent)
         if percent <= 25:
             return Status("#FFCC00", "\uf243", percent)
         if percent <= 50:
@@ -26,6 +28,10 @@ else:
         if percent <= 75:
             return Status("#FFFFFF", "\uf241", percent)
         return Status("#FFFFFF", "\uf240", percent)
+    # def state_view(state):
+    #     if state == "Discharging": return ""
+    #     if state == "Charging" return ""
+    #     return ""
     status = status_view(percent)
     output =  '<span font="FontAwesome" color=' + '"' + status.color + '"' + '>' + status.icon + '<span font="Roboto">' + str(status.percent) + '%</span></span>'
 print(output)
