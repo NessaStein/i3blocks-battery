@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
+
 import subprocess
 
 battery = subprocess.check_output(["acpi"], universal_newlines=True)
+
 if not battery:
-    output = '<span font="FontAwesome" color="#ffffff">\f12a Error</span>'
+    output = '<span font="FontAwesome" color="#fff">\f12a Error</span>'
 else:
     battery_information = battery.split("\n")[0].split(", ")
     state = battery_information[0].split(":")[1]
@@ -27,19 +29,18 @@ else:
 
     def status_view(percent):
         if percent <= 3:
-            # subprocess.call(['notify-send', time])
-            return Status("#FF3300", "\uf244 ", percent, time)
+            return Status("#F30", "\uf244 ", percent, time)
         if percent <= 5:
-            return Status("#FF3300", "\uf244 ", percent, time)
+            return Status("#F30", "\uf244 ", percent, time)
         if percent <= 15:
-            return Status("#FF3300", "\uf243 ", percent, time)
+            return Status("#F30", "\uf243 ", percent, time)
         if percent <= 25:
-            return Status("#FFCC00", "\uf243 ", percent, time)
+            return Status("#FC0", "\uf243 ", percent, time)
         if percent <= 50:
-            return Status("#FFFFFF", "\uf242 ", percent, time)
+            return Status("#FFF", "\uf242 ", percent, time)
         if percent <= 75:
-            return Status("#FFFFFF", "\uf241 ", percent, time)
-        return Status("#FFFFFF", "\uf240 ", percent, time)
+            return Status("#FFF", "\uf241 ", percent, time)
+        return Status("#FFF", "\uf240 ", percent, time)
 
     def state_view(state):
         if state == " Discharging":
@@ -49,7 +50,6 @@ else:
 
     status = status_view(percent)
     template = '''<span font="FontAwesome"><span>{}</span><span color="{}">{}</span><span font="Roboto">{}<span>[{}]</span></span></span>'''
-    print('\nSTATE', state, '\n')
 
     output = template.format(
         state_view(state),
